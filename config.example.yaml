@@ -1,0 +1,12 @@
+paths:
+  obsidian_vault: "C:/Users/imada/Desktop/Grad School Knowledge Base"
+  agent_inbox: "C:/Users/imada/Desktop/Grad School Knowledge Base/06 Agent Inbox"
+  memory: "G:/My Drive/AdamOS/memory"
+  logs: "G:/My Drive/AdamOS/logs"
+
+ollama:
+  host: "http://localhost:11434"
+  default_model: "llama3.1:8b"
+  code_model: "qwen2.5-coder:7b"
+
+hotkey: "ctrl+alt+a"
