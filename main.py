@@ -6,6 +6,7 @@ from types import SimpleNamespace
 from adamos.ollama_client import OllamaClient
 from adamos.obsidian_writer import ObsidianWriter
 from adamos.memory import Memory
+from adamos.prompt_loader import PromptLoader
 from adamos.router import Router
 from adamos.ui import AdamOSWindow
 
@@ -25,6 +26,7 @@ def main():
         ollama=OllamaClient(cfg["ollama"]["host"], cfg["ollama"]["default_model"]),
         writer=ObsidianWriter(cfg["paths"]["agent_inbox"]),
         memory=Memory(cfg["paths"]["memory"]),
+        prompts=PromptLoader(),
     )
 
     router = Router(ctx)

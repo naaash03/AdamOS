@@ -1,4 +1,5 @@
 from handlers import help as help_handler
+from handlers import note as note_handler
 
 
 class Router:
@@ -6,6 +7,7 @@ class Router:
         self.ctx = ctx
         self.routes = {
             "help": help_handler.handle,
+            "note": note_handler.handle,
         }
 
     def dispatch(self, text: str) -> str:
@@ -20,7 +22,8 @@ class Router:
             if handler is None:
                 return f"Unknown command: /{cmd}. Type /help for a list."
             return handler(args, self.ctx)
-        return self.ctx.ollama.generate(
-            text,
-            system="You are AdamOS, Adam's local assistant. Be concise and direct."
-        )
+        # Free chat: use the system voice prompt plus memory
+        system = self.ctx.prompts.system()
+        memory = self.ctx.memory.all_context()
+        full_system = f"{system}\n\n# Memory Context\n\n{memory}" if memory else system
+        return self.ctx.ollama.generate(text, system=full_system)
