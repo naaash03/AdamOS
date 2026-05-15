@@ -18,12 +18,14 @@ def handle(args: str, ctx) -> str:
     today = datetime.now().strftime("%Y-%m-%d")
     user_prompt = f"Today's date is {today}.\n\nWrite an Obsidian note on this topic:\n\n{topic}"
 
+    # Use the note-specific model from config (larger model for better quality)
+    note_model = ctx.config.get("ollama", {}).get("note_model")
+
     try:
-        content = ctx.ollama.generate(user_prompt, system=full_system)
+        content = ctx.ollama.generate(user_prompt, system=full_system, model=note_model)
     except Exception as e:
         return f"[error generating note] {e}"
 
-    # Use the topic as the title (the writer will sanitize it for the filename)
     try:
         path = ctx.writer.write_note(topic, content)
     except Exception as e:

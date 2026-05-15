@@ -8,5 +8,6 @@ ollama:
   host: "http://localhost:11434"
   default_model: "llama3.1:8b"
   code_model: "qwen2.5-coder:7b"
+  note_model: "qwen2.5:14b"
 
 hotkey: "ctrl+alt+a"
