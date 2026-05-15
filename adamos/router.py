@@ -1,5 +1,6 @@
 from handlers import help as help_handler
 from handlers import note as note_handler
+from handlers import claude_prompt as claude_handler
 
 
 class Router:
@@ -8,6 +9,7 @@ class Router:
         self.routes = {
             "help": help_handler.handle,
             "note": note_handler.handle,
+            "claude": claude_handler.handle,
         }
 
     def dispatch(self, text: str) -> str:
