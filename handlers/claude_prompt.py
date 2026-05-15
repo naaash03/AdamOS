@@ -31,4 +31,4 @@ def handle(args: str, ctx) -> str:
         return f"[generated, but clipboard failed] {e}\n\n{generated_prompt}"
 
     char_count = len(generated_prompt)
-    return f"Prompt copied to clipboard ({char_count} chars). Paste it into Claude.ai. Go cook."
+    return f"Prompt copied to clipboard ({char_count} chars). Paste into Claude.ai — strip any 'Here's the prompt:' preamble before sending. Go cook."
